@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>92 PAK</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#000;color:#eee;font-family:Arial,sans-serif;overflow:hidden}button,input{font:inherit}
+#login-overlay,#uid-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 18%,#250000 0,#050000 42%,#000 75%);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+#uid-overlay{display:none;z-index:999}.box{width:88%;max-width:360px;height:62px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:Arial,sans-serif}.vip-box{border:2px solid #f00;color:#f33;box-shadow:0 0 22px #900;font-size:24px;margin-bottom:16px}.join-box{border:1px solid #f00;color:#ff6666;cursor:pointer;margin-bottom:18px;font-size:15px}#login-overlay input,#uid-overlay input{width:82%;max-width:320px;padding:14px;border-radius:12px;border:1px solid #f00;background:#080000;color:#fff;text-align:center;outline:none;margin-bottom:14px}#login-overlay button,#uid-overlay button{border:0;background:#fff;color:#000;border-radius:12px;padding:13px 55px;font-weight:900;cursor:pointer}.neon-title{font-weight:900;color:#f22;text-shadow:0 0 12px #f00;margin-bottom:22px;text-transform:uppercase}
+#app{height:100%;display:none;flex-direction:column;background:radial-gradient(circle at 50% 25%,#220000 0,#050000 35%,#000 70%)}.custom-header{height:78px;min-height:78px;display:flex;align-items:center;justify-content:space-between;padding:4px 22px;border-bottom:1px solid #600;background:#030000;position:relative}.custom-header:after{content:'♛';position:absolute;left:50%;transform:translateX(-50%);top:1px;color:#f22;font-size:26px;text-shadow:0 0 12px #f00}.main-name{margin:17px 0 0;text-align:center;flex:1;color:#f22;font-size:28px;letter-spacing:2px;font-weight:900;text-shadow:0 0 10px #f00}.header-btn{width:45px;height:45px;border:1px solid #f00;background:#030000;color:#fff;border-radius:12px;font-size:22px}.header-btn.right{font-size:16px}
+.abox{flex:1;overflow:auto;padding:10px 18px 82px;max-width:620px;width:100%;margin:auto}.topbar{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin-bottom:9px}.tab{padding:14px 8px;background:linear-gradient(#170000,#070000);border:1px solid #600;color:#ffb0b0;border-radius:12px;text-align:center;font-weight:800;font-size:14px;cursor:pointer}.tab.active{background:linear-gradient(135deg,#690000,#f00);color:#fff;box-shadow:0 0 22px #f00}.clean{background:#100000;color:#f33;border:1px solid #f00;border-radius:9px;padding:10px 12px;font-weight:800}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#600;border:1px solid #700;border-radius:13px;overflow:hidden;margin-bottom:10px}.metric{background:#050505;padding:8px 3px;text-align:center}.metric .ico{display:block;color:#f22;font-size:20px}.metric small{display:block;color:#aaa;font-size:9px;margin-top:2px}.metric b{display:block;color:#fff;font-size:16px;margin-top:3px}.metric .redtxt{color:#f22}
+.card{height:430px;background:radial-gradient(circle at 50% 48%,#160000,#030000 62%,#000);border:2px solid #f00;border-radius:25px;text-align:center;box-shadow:0 0 30px rgba(255,0,0,.28),inset 0 0 40px #240000;margin-bottom:9px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center}.card:before{content:'';position:absolute;width:290px;height:290px;border-radius:50%;border:11px solid #3d0000;border-top-color:#f00;border-right-color:#b00;box-shadow:0 0 22px #f00,inset 0 0 22px #300}.card:after{content:'';position:absolute;width:320px;height:130px;top:105px;left:-55px;border-top:1px solid #700;border-bottom:1px solid #300;transform:skewX(-30deg);opacity:.45}.period{position:relative;z-index:3;color:#aaa;font-weight:700;font-size:16px;margin-bottom:8px}.timer{position:relative;z-index:3;font-size:66px;font-weight:900;color:#fff;line-height:1;text-shadow:0 0 10px #fff}.pred-label{position:relative;z-index:3;border:1px solid #f00;color:#f22;border-radius:15px;padding:4px 16px;margin-top:10px;font-size:11px;font-weight:800}.ptxt{position:relative;z-index:3;font-size:54px;font-weight:900;margin:8px 0;color:#f22;text-shadow:0 0 14px #f00}.side{position:absolute;z-index:2;color:#f22;font-size:64px;text-shadow:0 0 12px #f00;top:42%}.side.left{left:12px}.side.right{right:12px}.blur-box{filter:blur(4px);opacity:.4}.timer-fit{font-size:76px!important}
+#trade-alert{position:absolute;top:32%;right:-100%;width:100%;height:55px;background:#000;border:2px solid #f00;box-shadow:0 0 20px #f00;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;z-index:30}.animate-slide{animation:slideProcess 4s forwards}@keyframes slideProcess{0%{right:-100%}40%{right:0}70%{right:0}100%{right:100%}}
+.recent-title{text-align:center;color:#f22;font-weight:900;font-size:16px;margin:8px 0}.hbox{background:#000;border:1px solid #500;border-radius:12px;overflow:auto;max-height:360px}.hhead,.row{display:grid;grid-template-columns:1fr 1.2fr 1fr 1fr}.hhead{background:#170000;padding:10px;color:#f33;font-weight:900;font-size:10px;position:sticky;top:0}.row{padding:10px;border-bottom:1px solid #240000;font-size:11px}.col{text-align:center;color:#ddd}.win{color:#0f6;font-weight:900}.loss{color:#f26;font-weight:900}.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:70px;background:#050000;border-top:1px solid #700;display:grid;grid-template-columns:repeat(5,1fr);z-index:50}.nav{border:0;background:transparent;color:#777;font-size:9px;font-weight:800}.nav span{display:block;font-size:24px;margin-bottom:2px}.nav.active{color:#f22;text-shadow:0 0 10px #f00}.trade-nav{background:radial-gradient(circle,#360000,#050000 65%);border:1px solid #800;border-radius:22px 22px 0 0}.trade-nav span{font-size:30px;color:#f22}
+
+.history-page{display:none;position:fixed;inset:0;z-index:80;background:radial-gradient(circle at 50% 18%,#260000 0,#050000 40%,#000 75%);overflow:auto;padding-bottom:82px}.history-page.show{display:block}.history-header{height:78px;display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid #700;background:#030000;position:sticky;top:0;z-index:5;box-shadow:0 0 20px #300}.back-btn{width:44px;height:44px;border:1px solid #f00;border-radius:11px;background:#050000;color:#fff;font-size:24px}.history-title{flex:1;text-align:center;font-family:Orbitron,sans-serif;color:#f22;font-size:21px;text-shadow:0 0 10px #f00;margin:0}.history-wrap{padding:14px 16px;max-width:620px;margin:auto}.history-mode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.history-mode button{padding:13px;border-radius:11px;border:1px solid #600;background:#100000;color:#ff9b9b;font-weight:900}.history-mode button.active{background:linear-gradient(135deg,#690000,#f00);color:#fff;box-shadow:0 0 20px #f00}.history-subtitle{text-align:center;color:#f33;font-family:Orbitron,sans-serif;font-size:14px;margin:8px 0 12px}.history-table{border:1px solid #600;border-radius:14px;overflow:hidden;background:#020202;box-shadow:0 0 20px #210000}.history-empty{text-align:center;color:#777;padding:35px 10px;font-family:Rajdhani,sans-serif}.history-note{margin-top:12px;text-align:center;color:#777;font-size:11px}.history-page .row{padding:12px 7px}.history-page .hhead{padding:12px 7px}
+@media(max-width:420px){.main-name{font-size:25px}.card{height:390px}.timer{font-size:58px}.ptxt{font-size:48px}.metrics small{font-size:7px}.metrics b{font-size:13px}.tab{font-size:12px}.topbar{grid-template-columns:1fr 1fr auto}}
+
+.stats-page{display:none;position:fixed;inset:0;z-index:85;background:radial-gradient(circle at 50% 18%,#260000 0,#050000 40%,#000 75%);overflow:auto;padding-bottom:82px}.stats-page.show{display:block}.stats-header{height:78px;display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid #700;background:#030000;position:sticky;top:0;z-index:5;box-shadow:0 0 20px #300}.stats-title{flex:1;text-align:center;font-family:Orbitron,sans-serif;color:#f22;font-size:21px;text-shadow:0 0 10px #f00;margin:0}.stats-wrap{padding:16px;max-width:620px;margin:auto}.stats-mode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}.stats-mode button{padding:13px;border-radius:11px;border:1px solid #600;background:#100000;color:#ff9b9b;font-weight:900}.stats-mode button.active{background:linear-gradient(135deg,#690000,#f00);color:#fff;box-shadow:0 0 20px #f00}.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat-card{border:1px solid #700;border-radius:16px;background:linear-gradient(145deg,#100000,#020000);padding:20px 10px;text-align:center;box-shadow:0 0 18px #210000}.stat-card .sicon{font-size:28px;color:#f22;text-shadow:0 0 12px #f00}.stat-card small{display:block;color:#aaa;font-size:10px;font-weight:800;margin-top:8px}.stat-card b{display:block;color:#fff;font-family:Orbitron,sans-serif;font-size:28px;margin-top:5px}.stat-card .green{color:#00ef69}.stat-card .red{color:#ff174f}.rate-box{margin-top:14px;border:1px solid #700;border-radius:16px;background:#050000;padding:18px;text-align:center}.rate-box small{color:#aaa}.rate-value{font-family:Orbitron,sans-serif;color:#f22;font-size:34px;font-weight:900;margin-top:5px;text-shadow:0 0 12px #f00}.bar{height:10px;background:#220000;border-radius:10px;margin-top:12px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:#f22;box-shadow:0 0 12px #f00;transition:width .4s}.stats-note{text-align:center;color:#777;font-size:11px;margin-top:14px}
+
+/* ATTRACTIVE LOGIN SCREEN */
+#login-overlay{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,0,0,.22),transparent 27%),
+    radial-gradient(circle at 50% 65%,rgba(120,0,0,.16),transparent 38%),
+    linear-gradient(180deg,#050000,#000 72%);
+  overflow:auto;
+  justify-content:flex-start;
+  padding:28px 18px 24px;
+}
+#login-overlay:before{
+  content:'';
+  position:absolute;inset:0;pointer-events:none;opacity:.32;
+  background:
+    repeating-linear-gradient(125deg,transparent 0 70px,rgba(255,0,0,.12) 71px,transparent 72px 140px),
+    radial-gradient(circle at 50% 28%,transparent 0 22%,rgba(255,0,0,.10) 23%,transparent 24%);
+}
+.login-brand{position:relative;text-align:center;margin-top:8px;margin-bottom:30px;filter:drop-shadow(0 0 14px #900)}
+.crown{font-size:56px;color:#f22;line-height:.85;text-shadow:0 0 18px #f00}
+.rich-word{font-family:Orbitron,sans-serif;font-size:58px;line-height:.95;font-weight:900;letter-spacing:3px;color:#f11;text-shadow:0 0 8px #f00,0 0 24px #900}
+.trader-word{font-family:Orbitron,sans-serif;font-size:45px;line-height:1;font-weight:900;letter-spacing:3px;color:#eee;text-shadow:0 0 8px #fff}
+.tagline{margin:8px 0 0;color:#f22;font-family:Orbitron,sans-serif;font-size:18px;line-height:1.2;letter-spacing:4px;font-weight:900;text-shadow:0 0 8px #f00,0 0 16px #900}
+.login-action{position:relative;width:100%;max-width:390px;margin:auto}
+.login-row{
+  width:100%;min-height:82px;border:1px solid #f22;border-radius:18px;
+  margin-bottom:14px;background:linear-gradient(100deg,#050000,#170000,#030000);
+  box-shadow:0 0 18px rgba(255,0,0,.32),inset 0 0 18px rgba(255,0,0,.08);
+  display:flex;align-items:center;gap:14px;padding:13px 18px;
+  font-family:Orbitron,sans-serif;font-weight:900;color:#fff;cursor:pointer;
+}
+.login-row.vip-box{color:#f33;font-size:22px}
+.login-row.join-box{color:#fff;font-size:14px}
+.login-row.join-box small{display:block;color:#f22;font-size:9px;letter-spacing:1px;margin-top:5px}
+.row-icon{font-size:29px;color:#f22;text-shadow:0 0 10px #f00;min-width:34px;text-align:center}
+.arrow{margin-left:auto;color:#f66;font-size:42px;line-height:1;text-shadow:0 0 10px #f00}
+.password-wrap{
+  height:78px;border:1px solid #f22;border-radius:18px;background:#050000;
+  box-shadow:0 0 18px rgba(255,0,0,.25),inset 0 0 16px rgba(255,0,0,.08);
+  display:flex;align-items:center;padding:0 17px;margin:28px 0 16px;
+}
+.password-wrap input{
+  width:100%!important;max-width:none!important;margin:0!important;padding:14px 8px!important;
+  border:0!important;background:transparent!important;text-align:left!important;
+  color:#fff!important;font-size:17px;outline:none!important;
+}
+.password-wrap input::placeholder{color:#777}
+.lock,.eye{color:#777;font-size:27px}
+.eye{color:#f22;cursor:pointer;font-size:22px}
+.start-btn{
+  width:100%;height:82px;border:2px solid #f22!important;border-radius:20px!important;
+  background:linear-gradient(180deg,#fff,#ddd)!important;color:#090909!important;
+  box-shadow:0 0 24px rgba(255,0,0,.7),inset 0 0 14px #fff;
+  padding:0 24px!important;display:flex;align-items:center;justify-content:center;
+  font-family:Orbitron,sans-serif;font-size:25px;font-weight:900;letter-spacing:1px;
+  position:relative;overflow:hidden;
+}
+.start-btn:active{transform:translateX(5px)}
+.start-btn:after{content:'';position:absolute;inset:-40%;background:linear-gradient(110deg,transparent 45%,rgba(255,0,0,.35) 50%,transparent 55%);transform:translateX(-70%);animation:startShine 2.5s infinite}
+.start-btn span{position:relative;z-index:2}
+.start-arrows{margin-left:auto;color:#d00;font-size:42px;animation:arrowSlide 1s ease-in-out infinite}
+@keyframes arrowSlide{0%,100%{transform:translateX(0);opacity:.65}50%{transform:translateX(9px);opacity:1}}
+@keyframes startShine{0%,55%{transform:translateX(-70%)}100%{transform:translateX(70%)}}
+.login-footer{position:relative;text-align:center;margin-top:32px;color:#d22;font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:2px}
+.login-footer small{display:block;color:#777;font-size:8px;letter-spacing:1px;margin-top:7px}
+.shield{font-size:38px;color:#f22;text-shadow:0 0 15px #f00;margin-bottom:8px}
+@media(max-width:420px){
+  #login-overlay{padding-top:22px}
+  .login-brand{margin-bottom:24px}
+  .crown{font-size:46px}.rich-word{font-size:48px}.trader-word{font-size:38px}
+  .login-row{min-height:74px}.password-wrap{height:72px}.start-btn{height:76px}
+}
+
+
+/* ATTRACTIVE UID SCREEN */
+#uid-overlay{background:radial-gradient(circle at 50% 18%,rgba(255,0,0,.23),transparent 28%),radial-gradient(circle at 50% 70%,rgba(110,0,0,.16),transparent 40%),linear-gradient(180deg,#060000,#000);overflow:hidden;padding:20px}
+#uid-overlay:before{content:'';position:absolute;inset:0;opacity:.3;pointer-events:none;background:repeating-linear-gradient(125deg,transparent 0 80px,rgba(255,0,0,.12) 81px,transparent 82px 160px)}
+.uid-card{position:relative;width:min(92vw,410px);padding:28px 20px 24px;text-align:center;border:1px solid #f22;border-radius:24px;background:linear-gradient(145deg,rgba(22,0,0,.96),rgba(2,0,0,.98));box-shadow:0 0 35px rgba(255,0,0,.35),inset 0 0 28px rgba(255,0,0,.08)}
+.uid-crown{font-size:45px;color:#f22;text-shadow:0 0 18px #f00;line-height:1}
+.uid-brand{font-family:Orbitron,Arial,sans-serif;font-size:25px;font-weight:900;letter-spacing:2px;color:#f22;text-shadow:0 0 12px #f00;margin-top:6px}
+.uid-line{width:70%;height:2px;margin:14px auto 18px;background:linear-gradient(90deg,transparent,#f22,transparent);box-shadow:0 0 10px #f00}
+.uid-icon{width:66px;height:66px;margin:0 auto 14px;border:2px solid #f22;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#f22;font-size:28px;box-shadow:0 0 20px rgba(255,0,0,.45),inset 0 0 16px rgba(255,0,0,.12)}
+.uid-title{font-family:Orbitron,Arial,sans-serif;font-size:20px;font-weight:900;color:#fff;text-shadow:0 0 10px #f00}
+.uid-subtitle{font-family:Orbitron,Arial,sans-serif;font-size:9px;letter-spacing:2px;color:#d55;margin:9px 0 20px}
+.uid-input-wrap{height:70px;width:100%;box-sizing:border-box;border:1px solid #f22;border-radius:16px;background:#030000;display:flex;align-items:center;padding:0 15px;box-shadow:0 0 18px rgba(255,0,0,.24),inset 0 0 16px rgba(255,0,0,.08)}
+.uid-input-wrap input{width:100%!important;max-width:none!important;margin:0!important;padding:0 10px!important;border:0!important;background:transparent!important;color:#fff!important;text-align:center!important;font-family:Orbitron,Arial,sans-serif!important;font-size:19px!important;letter-spacing:4px;outline:none!important}
+.uid-input-wrap input::placeholder{color:#777;letter-spacing:1px}
+.uid-user,.uid-check{font-size:23px;color:#f22;text-shadow:0 0 8px #f00}.uid-check{font-size:21px;color:#777}
+.uid-next{margin-top:20px!important;width:100%;height:70px;padding:0 20px!important;border:2px solid #f22!important;border-radius:17px!important;background:linear-gradient(180deg,#fff,#ddd)!important;color:#080808!important;display:flex!important;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(255,0,0,.65),inset 0 0 12px #fff;font-family:Orbitron,Arial,sans-serif;font-size:21px;font-weight:900;position:relative;overflow:hidden}
+.uid-next:after{content:'';position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 45%,rgba(255,0,0,.3) 50%,transparent 55%);animation:uidShine 2.6s infinite}.uid-next span{position:relative;z-index:2}.uid-arrow{margin-left:auto;color:#d00;font-size:40px;animation:uidArrow 1s ease-in-out infinite}
+@keyframes uidArrow{0%,100%{transform:translateX(0);opacity:.65}50%{transform:translateX(9px);opacity:1}}@keyframes uidShine{0%,55%{transform:translateX(-70%)}100%{transform:translateX(70%)}}
+.uid-secure{margin-top:18px;color:#b22;font:900 8px/1 Orbitron,Arial,sans-serif;letter-spacing:2px}
+
+</style>
+</head>
+<body>
+<div id="login-overlay">
+  <div class="login-brand">
+    <div class="crown">♛</div>
+    <div class="rich-word">RICH</div>
+    <div class="trader-word">TRADER</div>
+    <h3 class="tagline">92 PAK</h3>
+  </div>
+  <div class="login-action">
+    <div class="login-row vip-box"><span class="row-icon">♛</span><span>92 PAK</span><span class="arrow">›</span></div>
+    <div class="login-row join-box" onclick="window.open('https://whatsapp.com/channel/0029VbCVhUu47Xe90aIrpA3T','_blank')"><span class="row-icon">◉</span><span><b>JOIN WHATSAPP CHANNEL</b><small>GET UPDATES &amp; SIGNALS</small></span><span class="arrow">›</span></div>
+    <div class="password-wrap"><span class="lock">♙</span><input type="password" id="pass" placeholder="Enter Password" autocomplete="off"><span class="eye" onclick="togglePass()">◉</span></div>
+    <button class="start-btn" onclick="checkPass()"><span>START</span><span class="start-arrows">»</span></button>
+  </div>
+  <div class="login-footer"><div class="shield">▥</div><b>SECURE • FAST • RELIABLE</b><small>YOUR SUCCESS IS OUR GOAL</small></div>
+</div>
+<div id="uid-overlay">
+  <div class="uid-card">
+    <div class="uid-crown">♛</div>
+    <div class="uid-brand">92 PAK</div>
+    <div class="uid-line"></div>
+    <div class="uid-icon">▣</div>
+    <div class="uid-title">ENTER YOUR GAME UID</div>
+    <div class="uid-subtitle">ENTER YOUR 6-DIGIT GAME ID</div>
+    <div class="uid-input-wrap"><span class="uid-user">♙</span><input type="text" id="game-uid" placeholder="Game UID" inputmode="numeric" maxlength="6" autocomplete="off"><span class="uid-check">✓</span></div>
+    <button class="uid-next" onclick="goToMain()"><span>NEXT</span><span class="uid-arrow">»</span></button>
+    <div class="uid-secure">SECURE • FAST • RELIABLE</div>
+  </div>
+</div>
+<div id="app">
+<header class="custom-header"><button class="header-btn" onclick="showTradeAlert('92 PAK MENU')">☰</button><h1 class="main-name">92 PAK</h1><button class="header-btn right" onclick="showTradeAlert('LIVE STATS')">▮▮▮</button></header>
+<div class="abox">
+<div class="topbar"><div id="t30" class="tab active" onclick="setMode('30S')">◷ WinGo 30S</div><div id="t60" class="tab" onclick="setMode('1M')">◷ WinGo 1M</div><button class="clean" onclick="clr()">♜ CLEAN</button></div>
+<div class="metrics"><div class="metric"><span class="ico">⌁</span><small>PERIOD</small><b id="mperiod">---</b></div><div class="metric"><span class="ico">◴</span><small>COUNTDOWN</small><b id="mtime">00:00</b></div><div class="metric"><span class="ico">〽</span><small>PREDICTION</small><b id="mpred" class="redtxt">--</b></div><div class="metric"><span class="ico">◎</span><small>CONFIDENCE</small><b id="mconf">--</b></div></div>
+<div class="card" id="main-card"><div class="side left">»</div><div class="side right">«</div><div id="trade-alert"></div><div id="pid" class="period">PERIOD: ---</div><div id="tmr" class="timer">00:00</div><div class="pred-label">PREDICTED</div><div id="pbx" class="ptxt">--</div></div>
+<div class="recent-title">RECENT RESULTS</div><div class="hbox"><div class="hhead"><div class="col">PERIOD</div><div class="col">PREDICTION</div><div class="col">RESULT</div><div class="col">STATUS</div></div><div id="hl"></div></div>
+</div>
+<section id="history-page" class="history-page">
+  <header class="history-header"><button class="back-btn" onclick="closeHistory()">‹</button><h2 class="history-title">TRADE HISTORY</h2><div style="width:44px"></div></header>
+  <div class="history-wrap">
+    <div class="history-mode"><button id="h30" class="active" onclick="setHistoryMode('30S')">WinGo 30S</button><button id="h60" onclick="setHistoryMode('1M')">WinGo 1M</button></div>
+    <div id="history-subtitle" class="history-subtitle">30 SECOND TRADE HISTORY</div>
+    <div class="history-table"><div class="hhead"><div class="col">PERIOD</div><div class="col">PREDICTION</div><div class="col">RESULT</div><div class="col">STATUS</div></div><div id="history-list"></div></div>
+    <div class="history-note">All trades recorded by this dashboard are shown here.</div>
+  </div>
+</section>
+<section id="stats-page" class="stats-page"><header class="stats-header"><button class="back-btn" onclick="closeStats()">‹</button><h2 class="stats-title">TRADE STATS</h2><div style="width:44px"></div></header><div class="stats-wrap"><div class="stats-mode"><button id="s30" class="active" onclick="setStatsMode('30S')">WinGo 30S</button><button id="s60" onclick="setStatsMode('1M')">WinGo 1M</button></div><div class="stats-grid"><div class="stat-card"><div class="sicon">◈</div><small>TOTAL TRADES</small><b id="stat-total">0</b></div><div class="stat-card"><div class="sicon">✓</div><small>TOTAL WIN</small><b id="stat-win" class="green">0</b></div><div class="stat-card"><div class="sicon">×</div><small>TOTAL LOSS</small><b id="stat-loss" class="red">0</b></div><div class="stat-card"><div class="sicon">⚡</div><small>CURRENT STREAK</small><b id="stat-streak">0</b></div></div><div class="rate-box"><small>WIN RATE</small><div id="stat-rate" class="rate-value">0%</div><div class="bar"><span id="stat-bar"></span></div></div><div class="stats-note">Statistics are calculated from the trades recorded in this dashboard.</div></div></section><nav class="bottom-nav"><button class="nav active" onclick="showTradeAlert('HOME')"><span>⌂</span>HOME</button><button class="nav" onclick="showHistory()"><span>◔</span>HISTORY</button><button class="nav trade-nav" onclick="document.getElementById('main-card').scrollIntoView({behavior:'smooth'})"><span>ϟ</span>TRADE</button><button class="nav" onclick="showStats()"><span>◕</span>STATS</button><button class="nav" onclick="openProfile()"><span>●</span>PROFILE</button></nav>
+</div>
+<script>
+let stage=1,winStreak=0;let dataStore={'30S':{history:[],lastP:'',lastR:''},'1M':{history:[],lastP:'',lastR:''}};let currentMode='30S';
+function togglePass(){const p=document.getElementById('pass');p.type=p.type==='password'?'text':'password'}
+function checkPass(){if(document.getElementById('pass').value==='Rich786'){document.getElementById('login-overlay').style.display='none';document.getElementById('uid-overlay').style.display='flex'}else alert('Wrong Password!')}
+function goToMain(){if(document.getElementById('game-uid').value.trim().length===6){document.getElementById('uid-overlay').style.display='none';document.getElementById('app').style.display='flex'}else alert('Wrong UID!')}
+function showTradeAlert(msg){let a=document.getElementById('trade-alert');a.innerText=msg;a.classList.remove('animate-slide');void a.offsetWidth;a.classList.add('animate-slide')}
+function setMode(m){currentMode=m;document.getElementById('t30').className=m==='30S'?'tab active':'tab';document.getElementById('t60').className=m==='1M'?'tab active':'tab';renderHistory();_sy()}
+function showHistory(){document.getElementById('history-page').classList.add('show');setHistoryMode('30S');document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.nav')[1].classList.add('active')}
+function closeHistory(){document.getElementById('history-page').classList.remove('show');document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.nav')[0].classList.add('active')}
+function setHistoryMode(m){document.getElementById('h30').classList.toggle('active',m==='30S');document.getElementById('h60').classList.toggle('active',m==='1M');document.getElementById('history-subtitle').innerText=m==='30S'?'30 SECOND TRADE HISTORY':'1 MINUTE TRADE HISTORY';const h=dataStore[m].history;document.getElementById('history-list').innerHTML=h.length?h.map(x=>'<div class="row"><div class="col">'+x.p+'</div><div class="col">'+x.r+'</div><div class="col">'+x.res+'</div><div class="col '+(x.status==='WIN'?'win':'loss')+'">'+x.status+'</div></div>').join(''):'<div class="history-empty">NO TRADES YET</div>'}
+function showStats(){document.getElementById('stats-page').classList.add('show');setStatsMode(currentMode);document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.nav')[3].classList.add('active')}
+function closeStats(){document.getElementById('stats-page').classList.remove('show');document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.nav')[0].classList.add('active')}
+function setStatsMode(m){document.getElementById('s30').classList.toggle('active',m==='30S');document.getElementById('s60').classList.toggle('active',m==='1M');updateStatsPage(m)}
+function updateStatsPage(m){let h=dataStore[m].history,w=h.filter(x=>x.status==='WIN').length,l=h.filter(x=>x.status==='LOSS').length,t=h.length,r=t?Math.round(w/t*100):0;document.getElementById('stat-total').innerText=t;document.getElementById('stat-win').innerText=w;document.getElementById('stat-loss').innerText=l;document.getElementById('stat-rate').innerText=r+'%';document.getElementById('stat-bar').style.width=r+'%';let streak=0;for(let i=0;i<h.length;i++){if(h[i].status==='WIN')streak++;else break}document.getElementById('stat-streak').innerText=streak}
+function openProfile(){window.open('https://whatsapp.com/channel/0029VbCVhUu47Xe90aIrpA3T','_blank')}
+async function _sy(){try{const url=currentMode==='30S'?'https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json':'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json';const r=await fetch(url+'?t='+Date.now());const d=await r.json();const list=d.data.list,latest=list[0];let trend=null;if(list.length>=4){let a=list.slice(1,4).map(i=>parseInt(i.number)>=5?'BIG':'SMALL');if(a.every(v=>v===a[0]))trend=a[0]}const currentP=(BigInt(latest.issueNumber)+1n).toString();if(dataStore[currentMode].lastP!==''&&dataStore[currentMode].lastP!==currentP){const finished=list[0],res=parseInt(finished.number)>=5?'BIG':'SMALL',isWin=dataStore[currentMode].lastR===res;if(isWin){winStreak++;stage=1;showTradeAlert(winStreak>1?'BACK-TO-BACK '+winStreak+' WIN':'WIN: ALL STAGES DONE')}else{winStreak=0;stage++;showTradeAlert('STAGE '+stage)}dataStore[currentMode].history.unshift({p:dataStore[currentMode].lastP.slice(-3),r:dataStore[currentMode].lastR,res:res,status:isWin?'WIN':'LOSS'});if(dataStore[currentMode].history.length>20)dataStore[currentMode].history.pop();renderHistory();refreshHistoryPage();if(isWin&&typeof confetti==='function')confetti()}dataStore[currentMode].lastP=currentP;dataStore[currentMode].lastR=trend||(parseInt(latest.number)%2===0?'BIG':'SMALL');let p=currentP.slice(-3),pred=dataStore[currentMode].lastR;document.getElementById('pid').innerHTML='PERIOD: '+p;document.getElementById('pbx').innerText=pred;document.getElementById('mperiod').innerText=p;document.getElementById('mpred').innerText=pred;document.getElementById('mconf').innerText=trend?'92%':'—'}catch(e){document.getElementById('pid').innerHTML='PERIOD: OFFLINE'}}
+function renderHistory(){document.getElementById('hl').innerHTML=dataStore[currentMode].history.map(x=>'<div class="row"><div class="col">'+x.p+'</div><div class="col">'+x.r+'</div><div class="col">'+x.res+'</div><div class="col '+(x.status==='WIN'?'win':'loss')+'">'+x.status+'</div></div>').join('')}
+function refreshHistoryPage(){const active=document.getElementById('history-page').classList.contains('show');if(active)setHistoryMode(document.getElementById('h60').classList.contains('active')?'1M':'30S');if(document.getElementById('stats-page').classList.contains('show'))updateStatsPage(document.getElementById('s60').classList.contains('active')?'1M':'30S')}
+function clr(){dataStore[currentMode].history=[];renderHistory();refreshHistoryPage()}
+setInterval(()=>{const dur=currentMode==='30S'?30:60;const s=dur-(new Date().getSeconds()%dur);let out='00:'+(s<10?'0'+s:s);document.getElementById('tmr').innerText=out;document.getElementById('mtime').innerText=out;if(s<=5){document.getElementById('tmr').classList.add('timer-fit');document.getElementById('pid').classList.add('blur-box');document.getElementById('pbx').classList.add('blur-box')}else{document.getElementById('tmr').classList.remove('timer-fit');document.getElementById('pid').classList.remove('blur-box');document.getElementById('pbx').classList.remove('blur-box')}if(s===1)_sy()},1000);_sy();
+</script>
+</body>
+</html>
